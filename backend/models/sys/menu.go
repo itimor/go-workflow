@@ -18,7 +18,7 @@ type Menu struct {
 	URL         string `gorm:"column:url;size:72;" json:"url" form:"url"`                                       // 菜单URL
 	Sequence    int    `gorm:"column:sequence;not null;" json:"sequence" form:"sequence"`                       // 排序值
 	MenuType    uint8  `gorm:"column:menu_type;type:tinyint(1);not null;" json:"menu_type" form:"menu_type"`    // 菜单类型 1模块2菜单3操作
-	Status      uint8  `gorm:"column:status;type:tinyint(1);not null;" json:"status" form:"status"`             // 状态(1:启用 2:不启用)
+	Status      uint8  `gorm:"column:status;type:tinyint(1);not null;" json:"status" form:"status"`             // 状态(1:启用 2:禁用)
 	Icon        string `gorm:"column:icon;size:32;" json:"icon" form:"icon"`                                    // icon
 	OperateType string `gorm:"column:operate_type;size:32;not null;" json:"operate_type" form:"operate_type"`   // 操作类型 none/add/del/view/update
 	Memo        string `gorm:"column:memo;size:64;" json:"memo" form:"memo"`                                    // 备注

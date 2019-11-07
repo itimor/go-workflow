@@ -16,8 +16,8 @@ type User struct {
 	Realname string `gorm:"column:realname;size:32;" json:"realname" form:"realname"`                                        // 真实姓名
 	Password string `gorm:"column:password;type:char(32);not null;" json:"password" form:"password"`                         // 密码(sha1(md5(明文))加密)
 	Email    string `gorm:"column:email;size:64;" json:"email" form:"email"`                                                 // 邮箱
+	Status   uint8  `gorm:"column:status;type:tinyint(1);default:1" json:"status" form:"status"`                             // 状态(1:正常 2:未激活 3:暂停使用)
 	Avatar   string `gorm:"default:'https://apic.douyucdn.cn/upload/avanew/face/201709/04/01/95a344efd1141fd073397fa78cf952ae_big.jpg'" json:"avatar" form:"avatar"`
-	Status   uint8  `gorm:"column:status;type:tinyint(1);default:1" json:"status" form:"status"` // 状态(1:正常 2:未激活 3:暂停使用)
 }
 
 // 表名
