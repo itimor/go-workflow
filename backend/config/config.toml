@@ -1,0 +1,26 @@
+[server]
+name = 'gogobar'
+apidoc = './apidoc'
+apiurl = 'http://localhost:8000'
+skipper_token_urls = ["/", "/apidoc", "/api/auth/login"]
+skipper_casbin_urls = ["/api/menu/allmenu","/api/menu/menubuttonlist","/api/user/userroleidlist","/api/auth/info", "/api/role/rolemenuidlist","/api/role/allrole"]
+
+[jwt]
+timeout = 720   # token 过期时间，hour
+prefix = "Bearer"   # token 前缀
+secert = "xxoo-1234-xxoo"   # token 前缀
+
+[test]
+loglevel = 'info'
+user = 'admin'
+pass = 'qwert@12345'
+role = 'admin'
+[test.database]
+driver = "sqlite3"
+connect = "test.db"
+
+[prod]
+loglevel = 'info'
+[prod.database]
+driver = "mysql"
+connect = "iris:iris@tcp(localhost:3306)/iris?charset=utf8&parseTime=True"

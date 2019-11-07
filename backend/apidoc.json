@@ -1,0 +1,14 @@
+{
+    "name": "iris-gorm-restful",
+    "version": "0.1.0",
+    "description": "iris restful api 初试",
+    "title": "iris-gorm-restful",
+    "url" : "http://127.0.0.1:8000/v1/",
+    "header": {
+      "title": "gogobar"
+    },
+    "footer": {
+      "title": "Author by itimor"
+    },
+    "order": [ "Error", "Define", "PostTitleAndError", "PostError"]
+  }
