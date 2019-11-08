@@ -36,8 +36,8 @@ func (m *OauthToken) BeforeUpdate(scope *gorm.Scope) error {
 	return nil
 }
 
-// 删除角色及关联数据
-func (OauthToken) Delete(roleids []uint64) error {
+// 删除
+func (OauthToken) Delete(ids []uint64) error {
 	tx := db.DB.Begin()
 	defer func() {
 		if r := recover(); r != nil {
@@ -48,7 +48,7 @@ func (OauthToken) Delete(roleids []uint64) error {
 		tx.Rollback()
 		return err
 	}
-	if err := tx.Where("id in (?)", roleids).Delete(&OauthToken{}).Error; err != nil {
+	if err := tx.Where("id in (?)", ids).Delete(&OauthToken{}).Error; err != nil {
 		tx.Rollback()
 		return err
 	}

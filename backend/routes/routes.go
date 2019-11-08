@@ -19,7 +19,7 @@ func RegisterRouter(app *iris.Application) {
 
 	// 加载路由
 	AuthRoute(main) // 认证登录
-	SysRoute(main) // 系统管理
+	SysRoute(main)  // 系统管理
 
 }
 

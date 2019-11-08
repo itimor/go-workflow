@@ -1,6 +1,7 @@
 package workflow
 
 import (
+	"go-workflow/backend/models/db"
 	"time"
 
 	"iris-ticket/backend/models/basemodel"
@@ -39,21 +40,35 @@ func (m *Case) BeforeUpdate(scope *gorm.Scope) error {
 	return nil
 }
 
-// 删除角色及关联数据
-// func (CaseType) Delete(roleids []uint64) error {
-// 	tx := db.DB.Begin()
-// 	defer func() {
-// 		if r := recover(); r != nil {
-// 			tx.Rollback()
-// 		}
-// 	}()
-// 	if err := tx.Error; err != nil {
-// 		tx.Rollback()
-// 		return err
-// 	}
-// 	if err := tx.Where("id in (?)", roleids).Delete(&Role{}).Error; err != nil {
-// 		tx.Rollback()
-// 		return err
-// 	}
-// 	return tx.Commit().Error
-// }
+// 删除
+func (Case) Delete(ids []uint64) error {
+	tx := db.DB.Begin()
+	defer func() {
+		if r := recover(); r != nil {
+			tx.Rollback()
+		}
+	}()
+	if err := tx.Error; err != nil {
+		tx.Rollback()
+		return err
+	}
+	if err := tx.Where("id in (?)", ids).Delete(&Case{}).Error; err != nil {
+		tx.Rollback()
+		return err
+	}
+	if err := tx.Where("case_id in (?)", ids).Delete(&CaseCaseType{}).Error; err != nil {
+		tx.Rollback()
+		return err
+	}
+	// 删除流程表
+	if err := tx.Where("case_id in (?)", ids).Delete(&CaseStep{}).Error; err != nil {
+		tx.Rollback()
+		return err
+	}
+	// 删除操作表
+	if err := tx.Where("case_id in (?)", ids).Delete(&CaseOpera{}).Error; err != nil {
+		tx.Rollback()
+		return err
+	}
+	return tx.Commit().Error
+}

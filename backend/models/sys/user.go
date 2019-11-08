@@ -39,7 +39,7 @@ func (m *User) BeforeUpdate(scope *gorm.Scope) error {
 }
 
 // 删除用户及关联数据
-func (User) Delete(userids []uint64) error {
+func (User) Delete(ids []uint64) error {
 	tx := db.DB.Begin()
 	defer func() {
 		if r := recover(); r != nil {
@@ -50,11 +50,11 @@ func (User) Delete(userids []uint64) error {
 		tx.Rollback()
 		return err
 	}
-	if err := tx.Where("id in (?)", userids).Delete(&User{}).Error; err != nil {
+	if err := tx.Where("id in (?)", ids).Delete(&User{}).Error; err != nil {
 		tx.Rollback()
 		return err
 	}
-	if err := tx.Where("user_id in (?)", userids).Delete(&UserRole{}).Error; err != nil {
+	if err := tx.Where("user_id in (?)", ids).Delete(&UserRole{}).Error; err != nil {
 		tx.Rollback()
 		return err
 	}

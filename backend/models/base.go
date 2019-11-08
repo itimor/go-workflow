@@ -2,11 +2,13 @@ package models
 
 import (
 	"fmt"
+	"go-workflow/backend/models/sys"
+	"go-workflow/backend/models/workflow"
+	"go-workflow/backend/models/workflowform"
 	"time"
 
-	"iris-ticket/backend/models/db"
-	"iris-ticket/backend/models/sys"
 	"iris-ticket/backend/config"
+	"iris-ticket/backend/models/db"
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
@@ -36,10 +38,22 @@ func InitDB() {
 }
 
 func Migration() {
+	println("初始化数据库")
+	// sys
 	fmt.Println("db Menu 初始化：", db.DB.AutoMigrate(new(sys.Menu)).Error)
 	fmt.Println("db User 初始化：", db.DB.AutoMigrate(new(sys.User)).Error)
 	fmt.Println("db RoleMenu 初始化：", db.DB.AutoMigrate(new(sys.RoleMenu)).Error)
 	fmt.Println("db Role 初始化：", db.DB.AutoMigrate(new(sys.Role)).Error)
 	fmt.Println("db UserRole 初始化：", db.DB.AutoMigrate(new(sys.UserRole)).Error)
 	fmt.Println("db OauthToken 初始化：", db.DB.AutoMigrate(new(sys.OauthToken)).Error)
+	// workflow
+	fmt.Println("db CaseType 初始化：", db.DB.AutoMigrate(new(workflow.CaseType)).Error)
+	fmt.Println("db CaseTypeStep 初始化：", db.DB.AutoMigrate(new(workflow.CaseTypeStep)).Error)
+	fmt.Println("db Case 初始化：", db.DB.AutoMigrate(new(workflow.Case)).Error)
+	fmt.Println("db CaseCaseType 初始化：", db.DB.AutoMigrate(new(workflow.CaseCaseType)).Error)
+	fmt.Println("db CaseOpera 初始化：", db.DB.AutoMigrate(new(workflow.CaseOpera)).Error)
+	fmt.Println("db CaseStep 初始化：", db.DB.AutoMigrate(new(workflow.CaseStep)).Error)
+	fmt.Println("db CaseType 初始化：", db.DB.AutoMigrate(new(workflow.CaseType)).Error)
+	// workflowform
+	fmt.Println("db Deploy 初始化：", db.DB.AutoMigrate(new(workflowform.Deploy)).Error)
 }

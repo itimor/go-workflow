@@ -66,7 +66,7 @@ func (Menu) GetMenuByUserid(userid uint64, menus *[]Menu) (err error) {
 }
 
 // 删除菜单及关联数据
-func (Menu) Delete(menuids []uint64) error {
+func (Menu) Delete(ids []uint64) error {
 	tx := db.DB.Begin()
 	defer func() {
 		if r := recover(); r != nil {
@@ -77,17 +77,17 @@ func (Menu) Delete(menuids []uint64) error {
 		tx.Rollback()
 		return err
 	}
-	for _, menuid := range menuids {
+	for _, menuid := range ids {
 		if err := deleteMenuRecurve(tx, menuid); err != nil {
 			tx.Rollback()
 			return err
 		}
 	}
-	if err := tx.Where("menu_id in (?)", menuids).Delete(&RoleMenu{}).Error; err != nil {
+	if err := tx.Where("menu_id in (?)", ids).Delete(&RoleMenu{}).Error; err != nil {
 		tx.Rollback()
 		return err
 	}
-	if err := tx.Where("id in (?)", menuids).Delete(&Menu{}).Error; err != nil {
+	if err := tx.Where("id in (?)", ids).Delete(&Menu{}).Error; err != nil {
 		tx.Rollback()
 		return err
 	}

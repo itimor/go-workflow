@@ -37,7 +37,7 @@ func (m *Role) BeforeUpdate(scope *gorm.Scope) error {
 }
 
 // 删除角色及关联数据
-func (Role) Delete(roleids []uint64) error {
+func (Role) Delete(ids []uint64) error {
 	tx := db.DB.Begin()
 	defer func() {
 		if r := recover(); r != nil {
@@ -48,11 +48,11 @@ func (Role) Delete(roleids []uint64) error {
 		tx.Rollback()
 		return err
 	}
-	if err := tx.Where("id in (?)", roleids).Delete(&Role{}).Error; err != nil {
+	if err := tx.Where("id in (?)", ids).Delete(&Role{}).Error; err != nil {
 		tx.Rollback()
 		return err
 	}
-	if err := tx.Where("role_id in (?)", roleids).Delete(&RoleMenu{}).Error; err != nil {
+	if err := tx.Where("role_id in (?)", ids).Delete(&RoleMenu{}).Error; err != nil {
 		tx.Rollback()
 		return err
 	}
