@@ -375,3 +375,4 @@ func setMenuUp(menuMapAll map[uint64]sys.Menu, menuid uint64, menuMap map[uint64
 		}
 	}
 }
+}

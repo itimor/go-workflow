@@ -17,7 +17,7 @@ pass = 'qwert@12345'
 role = 'admin'
 [test.database]
 driver = "sqlite3"
-connect = "go.db"
+connect = "test.db"
 
 [prod]
 loglevel = 'info'
