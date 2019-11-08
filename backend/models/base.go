@@ -40,11 +40,11 @@ func InitDB() {
 func Migration() {
 	println("初始化数据库")
 	// sys
-	fmt.Println("db Menu 初始化：", db.DB.AutoMigrate(new(sys.Menu)).Error)
 	fmt.Println("db User 初始化：", db.DB.AutoMigrate(new(sys.User)).Error)
-	fmt.Println("db RoleMenu 初始化：", db.DB.AutoMigrate(new(sys.RoleMenu)).Error)
 	fmt.Println("db Role 初始化：", db.DB.AutoMigrate(new(sys.Role)).Error)
 	fmt.Println("db UserRole 初始化：", db.DB.AutoMigrate(new(sys.UserRole)).Error)
+	fmt.Println("db Menu 初始化：", db.DB.AutoMigrate(new(sys.Menu)).Error)
+	fmt.Println("db RoleMenu 初始化：", db.DB.AutoMigrate(new(sys.RoleMenu)).Error)
 	fmt.Println("db OauthToken 初始化：", db.DB.AutoMigrate(new(sys.OauthToken)).Error)
 	// workflow
 	fmt.Println("db CaseType 初始化：", db.DB.AutoMigrate(new(workflow.CaseType)).Error)
