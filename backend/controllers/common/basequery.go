@@ -14,7 +14,8 @@ func GetQueryToStrE(ctx iris.Context, key string) (string, error) {
 	if !ok {
 		return "", errors.New("没有这个值传入")
 	}
-	return ctx.URLParam(key), nil
+	v := ctx.URLParam(key)
+	return v, nil
 }
 
 // GetQueryToStr
