@@ -197,7 +197,7 @@ export default {
     statusFilter(status) {
       const statusMap = {
         1: '启用',
-        2: '不启用'
+        2: '禁用'
       }
       return statusMap[status]
     }
@@ -227,7 +227,7 @@ export default {
         id: 0,
         name: '',
         form: '',
-        status: 1,
+        status: 2,
         memo: '',
       },
       dialogFormVisible: false,
@@ -297,7 +297,8 @@ export default {
       this.temp = {
         id: 0,
         name: '',
-        code: '',
+        status: 1,
+        memo: ''
       }
     },
     handleCreate() {
@@ -324,7 +325,7 @@ export default {
               duration: 2000
             })
             this.total = this.total + 1
-            this.getAll()
+            this.getList()
           }).catch(() => {
             this.loading = false
           })
@@ -375,7 +376,7 @@ export default {
               type: 'success',
               duration: 2000
             })
-            this.getAll()
+            this.getList()
           }).catch(() => {
             this.loading = false
           })
@@ -398,7 +399,7 @@ export default {
           this.total = this.total - 1
           const index = this.list.indexOf(row)
           this.list.splice(index, 1)
-          this.getAll()
+          this.getList()
         })
       }).catch(() => {
         this.$message({
@@ -438,7 +439,7 @@ export default {
             const index = this.list.indexOf(row)
             this.list.splice(index, 1)
           }
-          this.getAll()
+          this.getList()
         })
       }).catch(() => {
         this.$message({

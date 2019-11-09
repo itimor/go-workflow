@@ -99,6 +99,7 @@ func (CaseType) Create(ctx iris.Context) {
 
 	model := workflow.CaseType{}
 	err := ctx.ReadJSON(&model)
+
 	if err != nil {
 		common.ResErrSrv(ctx, err)
 		return

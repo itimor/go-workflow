@@ -285,7 +285,7 @@ export default {
     statusFilter(status) {
       const statusMap = {
         1: '启用',
-        2: '不启用'
+        2: '禁用'
       }
       return statusMap[status]
     }

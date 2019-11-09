@@ -14,7 +14,7 @@ type CaseType struct {
 	basemodel.Model
 	Name   string `gorm:"column:name;size:32;not null;" json:"name" form:"name"`               // 名称
 	Status uint8  `gorm:"column:status;type:tinyint(1);not null;" json:"status" form:"status"` // 状态(1:启用 2:禁用)
-	Form   uint8  `gorm:"column:form;type:tinyint(1);not null;" json:"form" form:"form"`       // 工作流类型表单(1:发布 2:请假 3...)
+	Form   string `gorm:"column:form;size:32;not null;" json:"form" form:"form"`               // 工作流类型表单(1:发布 2:请假 3...)
 	Memo   string `gorm:"column:memo;size:64;" json:"memo" form:"memo"`                        // 备注
 }
 

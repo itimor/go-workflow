@@ -274,7 +274,7 @@ export default {
               duration: 2000
             })
             this.total = this.total + 1
-            this.getAll()
+            this.getList()
           }).catch(() => {
             this.loading = false
           })
@@ -325,7 +325,7 @@ export default {
               type: 'success',
               duration: 2000
             })
-            this.getAll()
+            this.getList()
           }).catch(() => {
             this.loading = false
           })
@@ -348,7 +348,7 @@ export default {
           this.total = this.total - 1
           const index = this.list.indexOf(row)
           this.list.splice(index, 1)
-          this.getAll()
+          this.getList()
         })
       }).catch(() => {
         this.$message({
@@ -388,7 +388,7 @@ export default {
             const index = this.list.indexOf(row)
             this.list.splice(index, 1)
           }
-          this.getAll()
+          this.getList()
         })
       }).catch(() => {
         this.$message({
