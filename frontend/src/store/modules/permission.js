@@ -176,4 +176,5 @@ export const componentsMap = {
   // workflow
   CaseType: () => import('@/views/workflow/casetype'), // 工作流类型
   CaseForm: () => import('@/views/workflow/caseform'), // 工作流表单
+  Case: () => import('@/views/workflow/case'), // 工作流
 }

@@ -34,7 +34,7 @@ func WorkflowRoute(party iris.Party) {
 			caseform.Post("/update", caseforms.Update)
 			caseform.Post("/create", caseforms.Create)
 		})
-		cases := workflow.CaseForm{}
+		cases := workflow.Case{}
 		wfapi.PartyFunc("/case", func(wfcase router.Party) {
 			wfcase.Get("/list", cases.List)
 			wfcase.Get("/detail", cases.Detail)
@@ -42,7 +42,7 @@ func WorkflowRoute(party iris.Party) {
 			wfcase.Post("/update", cases.Update)
 			wfcase.Post("/create", cases.Create)
 		})
-		casesteps := workflow.CaseForm{}
+		casesteps := workflow.CaseStep{}
 		wfapi.PartyFunc("/casestep", func(casestep router.Party) {
 			casestep.Get("/list", casesteps.List)
 			casestep.Get("/detail", casesteps.Detail)
@@ -50,7 +50,7 @@ func WorkflowRoute(party iris.Party) {
 			casestep.Post("/update", casesteps.Update)
 			casestep.Post("/create", casesteps.Create)
 		})
-		caseoperas := workflow.CaseForm{}
+		caseoperas := workflow.CaseOpera{}
 		wfapi.PartyFunc("/caseopera", func(caseopera router.Party) {
 			caseopera.Get("/list", caseoperas.List)
 			caseopera.Get("/detail", caseoperas.Detail)
