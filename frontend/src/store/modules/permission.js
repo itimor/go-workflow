@@ -178,6 +178,7 @@ export const componentsMap = {
   User: () => import('@/views/sys/user'), // 后台管理员
   Role: () => import('@/views/sys/role'), // 后台角色
   Icon: () => import('@/views/svg-icons/index'), // 图标管理
-  Test: () => import('@/views/sys/test') // test
-  // ticket
+  Test: () => import('@/views/sys/test'), // test
+  // workflow
+  CaseType: () => import('@/views/workflow/casetype') // 工单类型
 }

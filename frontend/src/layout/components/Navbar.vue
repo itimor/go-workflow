@@ -100,7 +100,7 @@ import Hamburger from '@/components/Hamburger'
 import Screenfull from '@/components/Screenfull'
 import LangSelect from '@/components/LangSelect'
 import Search from '@/components/HeaderSearch'
-import { changepwd } from '@/api/auth'
+import { changepwd } from '@/api/sys/auth'
 
 export default {
   components: {

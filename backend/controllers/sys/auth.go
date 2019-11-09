@@ -201,27 +201,6 @@ func (Auth) Info(ctx iris.Context) {
 			common.ResErrSrv(ctx, err)
 			return
 		}
-		if len(menuData) == 0 {
-			menuModelTop := sys.Menu{Status: 1, ParentID: 0, URL: "", Name: "TOP", Sequence: 1, MenuType: 1, Code: "TOP", OperateType: "none"}
-			models.Create(&menuModelTop)
-			menuModelSys := sys.Menu{Status: 1, ParentID: menuModelTop.ID, URL: "", Name: "系统管理", Sequence: 1, MenuType: 1, Code: "Sys", Icon: "lock", OperateType: "none"}
-			models.Create(&menuModelSys)
-			menuModel := sys.Menu{Status: 1, ParentID: menuModelSys.ID, URL: "/menu", Name: "菜单管理", Sequence: 20, MenuType: 2, Code: "Menu", Icon: "documentation", OperateType: "none"}
-			models.Create(&menuModel)
-			InitMenu(menuModel)
-			menuModel = sys.Menu{Status: 1, ParentID: menuModelSys.ID, URL: "/role", Name: "角色管理", Sequence: 30, MenuType: 2, Code: "Role", Icon: "tree", OperateType: "none"}
-			models.Create(&menuModel)
-			InitMenu(menuModel)
-			menuModel = sys.Menu{Status: 1, ParentID: menuModel.ID, URL: "/role/setrole", Name: "分配角色菜单", Sequence: 6, MenuType: 3, Code: "RoleSetrolemenu", Icon: "", OperateType: "setrolemenu"}
-			models.Create(&menuModel)
-			menuModel = sys.Menu{Status: 1, ParentID: menuModelSys.ID, URL: "/user", Name: "用户管理", Sequence: 40, MenuType: 2, Code: "user", Icon: "user", OperateType: "none"}
-			models.Create(&menuModel)
-			InitMenu(menuModel)
-			menuModel = sys.Menu{Status: 1, ParentID: menuModel.ID, URL: "/user/setrole", Name: "分配角色", Sequence: 6, MenuType: 3, Code: "userSetrole", Icon: "", OperateType: "setadminrole"}
-			models.Create(&menuModel)
-
-			menuData, _ = getAllMenu()
-		}
 	} else {
 		menuData, err = getMenusByUserid(userID)
 		if err != nil {
@@ -235,6 +214,7 @@ func (Auth) Info(ctx iris.Context) {
 		if topmenuid == 0 {
 			topmenuid = menuData[0].ID
 		}
+		println(menuData)
 		menus = setMenu(menuData, topmenuid)
 	}
 	if len(menus) == 0 && userID == common.SUPER_ADMIN_ID {

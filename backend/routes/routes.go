@@ -18,8 +18,9 @@ func RegisterRouter(app *iris.Application) {
 	main := corsSetting(app)
 
 	// 加载路由
-	AuthRoute(main) // 认证登录
-	SysRoute(main)  // 系统管理
+	AuthRoute(main)     // 认证登录
+	SysRoute(main)      // 系统管理
+	WorkflowRoute(main) //工作流类型
 
 }
 
