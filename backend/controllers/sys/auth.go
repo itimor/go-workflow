@@ -1,7 +1,6 @@
 package sys
 
 import (
-	"fmt"
 	"time"
 
 	"go-workflow/backend/config"
@@ -286,7 +285,6 @@ func setMenu(menus []sys.Menu, parentID uint64) (out []MenuModel) {
 			menu.Hidden = true
 		}
 		//查询是否有子级
-		fmt.Printf("%#v", menus)
 		menuChildren := setMenu(menus, item.ID)
 		if len(menuChildren) > 0 {
 			menu.Children = menuChildren

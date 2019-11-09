@@ -16,7 +16,6 @@ func (CaseForm) List(ctx iris.Context) {
 	limit := common.GetPageLimit(ctx)
 	sort := common.GetPageSort(ctx)
 	key := common.GetPageKey(ctx)
-	status := common.GetQueryToUint(ctx, "status")
 	var whereOrder []models.PageWhereOrder
 	order := "ID DESC"
 
@@ -35,12 +34,7 @@ func (CaseForm) List(ctx iris.Context) {
 		var arr []interface{}
 		arr = append(arr, v)
 		arr = append(arr, v)
-		whereOrder = append(whereOrder, models.PageWhereOrder{Where: "username like ? or realname like ?", Value: arr})
-	}
-	if status > 0 {
-		var arr []interface{}
-		arr = append(arr, status)
-		whereOrder = append(whereOrder, models.PageWhereOrder{Where: "status = ?", Value: arr})
+		whereOrder = append(whereOrder, models.PageWhereOrder{Where: "name like ?", Value: arr})
 	}
 	var total uint64
 	list := []workflow.CaseForm{}
@@ -68,6 +62,8 @@ func (CaseForm) Detail(ctx iris.Context) {
 
 // 更新
 func (CaseForm) Update(ctx iris.Context) {
+	uid, _ := ctx.Values().GetUint64("auth_user_id")
+
 	model := workflow.CaseForm{}
 	err := ctx.ReadJSON(&model)
 	if err != nil {
@@ -82,6 +78,7 @@ func (CaseForm) Update(ctx iris.Context) {
 		common.ResErrSrv(ctx, err)
 		return
 	}
+	model.UpdatedBy = uid
 	err = models.Save(&model)
 	if err != nil {
 		common.ResFail(ctx, "操作失败")
@@ -92,12 +89,15 @@ func (CaseForm) Update(ctx iris.Context) {
 
 //新增
 func (CaseForm) Create(ctx iris.Context) {
+	uid, _ := ctx.Values().GetUint64("auth_user_id")
+
 	model := workflow.CaseForm{}
 	err := ctx.ReadJSON(&model)
 	if err != nil {
 		common.ResErrSrv(ctx, err)
 		return
 	}
+	model.CreatedBy = uid
 	err = models.Create(&model)
 	if err != nil {
 		common.ResFail(ctx, "操作失败")

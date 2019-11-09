@@ -2,8 +2,10 @@
 name = 'gogobar'
 apidoc = './apidoc'
 apiurl = 'http://localhost:8000'
-skipper_token_urls = ["/", "/apidoc", "/api/auth/login"]
-skipper_casbin_urls = ["/api/menu/allmenu","/api/menu/menubuttonlist","/api/user/userroleidlist","/api/auth/info", "/api/role/rolemenuidlist","/api/role/allrole"]
+skipper_token_urls = ["/", "/apidoc", "/api/sys/auth/login"]
+skipper_casbin_urls = [
+    "/api/sys/menu/allmenu","/api/sys/menu/menubuttonlist","/api/sys/user/userroleidlist",
+    "/api/sys/auth/info", "/api/sys/role/rolemenuidlist","/api/sys/role/allrole"]
 
 [jwt]
 timeout = 720   # token 过期时间，hour

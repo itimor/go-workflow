@@ -2,22 +2,15 @@ import request from '@/utils/request'
 
 export function requestList(query) {
   return request({
-    url: '/casetypestep/list',
+    url: '/workflow/casetypestep/list',
     method: 'get',
     params: query
   })
 }
 
-export function requestAll() {
-  return request({
-    url: '/casetypestep/allmenu',
-    method: 'get'
-  })
-}
-
 export function requestDetail(id) {
   return request({
-    url: '/casetypestep/detail',
+    url: '/workflow/casetypestep/detail',
     method: 'get',
     params: { id }
   })
@@ -25,7 +18,7 @@ export function requestDetail(id) {
 
 export function requestUpdate(data) {
   return request({
-    url: '/casetypestep/update',
+    url: '/workflow/casetypestep/update',
     method: 'post',
     data
   })
@@ -33,7 +26,7 @@ export function requestUpdate(data) {
 
 export function requestCreate(data) {
   return request({
-    url: '/casetypestep/create',
+    url: '/workflow/casetypestep/create',
     method: 'post',
     data
   })
@@ -41,7 +34,7 @@ export function requestCreate(data) {
 
 export function requestDelete(data) {
   return request({
-    url: '/casetypestep/delete',
+    url: '/workflow/casetypestep/delete',
     method: 'post',
     data
   })

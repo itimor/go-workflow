@@ -1,4 +1,4 @@
-import { asyncRoutes, asyncRoutes2, constantRoutes } from '@/router'
+import { asyncRoutes, constantRoutes } from '@/router'
 // import { getMenus } from '@/api/user'
 /* Layout */
 import Layout from '@/layout'
@@ -61,7 +61,6 @@ const actions = {
       } else {
         // 如果不是总管理员则进行过滤
         // accessedRoutes = filterAsyncRoutes(asyncRoutes, roles)
-        accessedRoutes = asyncRoutes2
         return
         /**
         // 从服务端请求菜单列表数据
@@ -87,12 +86,7 @@ const actions = {
   },
   generateRoutes({ commit }, data) {
     return new Promise(resolve => {
-      // const { asyncRouterMap } = data
-      // console.log('001')
-      // console.log(data)
       const accessedRouters = convertRouter(data)
-      // console.log('002')
-      // console.log(accessedRouters)
       commit('SET_ROUTES', accessedRouters)
       resolve(accessedRouters)
     })
@@ -180,5 +174,6 @@ export const componentsMap = {
   Icon: () => import('@/views/svg-icons/index'), // 图标管理
   Test: () => import('@/views/sys/test'), // test
   // workflow
-  CaseType: () => import('@/views/workflow/casetype') // 工单类型
+  CaseType: () => import('@/views/workflow/casetype'), // 工作流类型
+  CaseForm: () => import('@/views/workflow/caseform'), // 工作流表单
 }

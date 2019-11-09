@@ -48,6 +48,7 @@ func Migration() {
 	fmt.Println("db OauthToken 初始化：", db.DB.AutoMigrate(new(sys.OauthToken)).Error)
 	// workflow
 	fmt.Println("db CaseType 初始化：", db.DB.AutoMigrate(new(workflow.CaseType)).Error)
+	fmt.Println("db CaseForm 初始化：", db.DB.AutoMigrate(new(workflow.CaseForm)).Error)
 	fmt.Println("db CaseTypeStep 初始化：", db.DB.AutoMigrate(new(workflow.CaseTypeStep)).Error)
 	fmt.Println("db Case 初始化：", db.DB.AutoMigrate(new(workflow.Case)).Error)
 	fmt.Println("db CaseCaseType 初始化：", db.DB.AutoMigrate(new(workflow.CaseCaseType)).Error)

@@ -8,10 +8,10 @@ import (
 )
 
 func WorkflowRoute(party iris.Party) {
-	api := party.Party("/api")
+	wfapi := party.Party("/workflow")
 	{
 		casetypes := workflow.CaseType{}
-		api.PartyFunc("/casetype", func(casetype router.Party) {
+		wfapi.PartyFunc("/casetype", func(casetype router.Party) {
 			casetype.Get("/list", casetypes.List)
 			casetype.Get("/detail", casetypes.Detail)
 			casetype.Post("/delete", casetypes.Delete)
@@ -19,7 +19,7 @@ func WorkflowRoute(party iris.Party) {
 			casetype.Post("/create", casetypes.Create)
 		})
 		casetypesteps := workflow.CaseTypeStep{}
-		api.PartyFunc("/casetypestep", func(casetypestep router.Party) {
+		wfapi.PartyFunc("/casetypestep", func(casetypestep router.Party) {
 			casetypestep.Get("/list", casetypesteps.List)
 			casetypestep.Get("/detail", casetypesteps.Detail)
 			casetypestep.Post("/delete", casetypesteps.Delete)
@@ -27,7 +27,7 @@ func WorkflowRoute(party iris.Party) {
 			casetypestep.Post("/create", casetypesteps.Create)
 		})
 		caseforms := workflow.CaseForm{}
-		api.PartyFunc("/casetypestep", func(caseform router.Party) {
+		wfapi.PartyFunc("/caseform", func(caseform router.Party) {
 			caseform.Get("/list", caseforms.List)
 			caseform.Get("/detail", caseforms.Detail)
 			caseform.Post("/delete", caseforms.Delete)

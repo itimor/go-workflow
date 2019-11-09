@@ -5,7 +5,6 @@ import (
 	"time"
 
 	"go-workflow/backend/models/basemodel"
-	"go-workflow/backend/models/sys"
 
 	"github.com/jinzhu/gorm"
 )
@@ -13,13 +12,12 @@ import (
 // 工作流
 type Case struct {
 	basemodel.Model
-	Name       string   `gorm:"column:name;size:32;not null;" json:"name" form:"name"`               // 名称
-	CreateUser sys.User `gorm:"foreignkey:UserID"`                                                   // 创建人
-	Content    string   `gorm:"column:content;type:text;" json:"content" form:"content"`             // 工单需求
-	Result     string   `gorm:"column:result;type:text;" json:"result" form:"result"`                // 工单结果
-	Status     uint8    `gorm:"column:status;type:tinyint(1);not null;" json:"status" form:"status"` // 状态(1:待提交 2:审核中 3:审核驳回 4:执行中 5:执行驳回 6:执行完成 7:完成关闭 8:驳回关闭 9:撤销关闭)
-	Step       uint8    `gorm:"column:step;type:tinyint(1);not null;" json:"step" form:"step"`       // 当前流程步骤(1 2 3 4)
-	Memo       string   `gorm:"column:memo;size:64;" json:"memo" form:"memo"`                        // 备注
+	Name    string `gorm:"column:name;size:32;not null;" json:"name" form:"name"`               // 名称
+	Content string `gorm:"column:content;type:text;" json:"content" form:"content"`             // 工单需求
+	Result  string `gorm:"column:result;type:text;" json:"result" form:"result"`                // 工单结果
+	Status  uint8  `gorm:"column:status;type:tinyint(1);not null;" json:"status" form:"status"` // 状态(1:待提交 2:审核中 3:审核驳回 4:执行中 5:执行驳回 6:执行完成 7:完成关闭 8:驳回关闭 9:撤销关闭)
+	Step    uint8  `gorm:"column:step;type:tinyint(1);not null;" json:"step" form:"step"`       // 当前流程步骤(1 2 3 4)
+	Memo    string `gorm:"column:memo;size:64;" json:"memo" form:"memo"`                        // 备注
 }
 
 // 表名

@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function requestList(query) {
   return request({
-    url: '/menu/list',
+    url: '/sys/menu/list',
     method: 'get',
     params: query
   })
@@ -10,14 +10,14 @@ export function requestList(query) {
 
 export function requestAll() {
   return request({
-    url: '/menu/allmenu',
+    url: '/sys/menu/allmenu',
     method: 'get'
   })
 }
 
 export function requestDetail(id) {
   return request({
-    url: '/menu/detail',
+    url: '/sys/menu/detail',
     method: 'get',
     params: { id }
   })
@@ -25,7 +25,7 @@ export function requestDetail(id) {
 
 export function requestUpdate(data) {
   return request({
-    url: '/menu/update',
+    url: '/sys/menu/update',
     method: 'post',
     data
   })
@@ -33,7 +33,7 @@ export function requestUpdate(data) {
 
 export function requestCreate(data) {
   return request({
-    url: '/menu/create',
+    url: '/sys/menu/create',
     method: 'post',
     data
   })
@@ -41,7 +41,7 @@ export function requestCreate(data) {
 
 export function requestDelete(data) {
   return request({
-    url: '/menu/delete',
+    url: '/sys/menu/delete',
     method: 'post',
     data
   })
@@ -49,7 +49,7 @@ export function requestDelete(data) {
 
 export function requestMenuButton(menucode) {
   return request({
-    url: '/menu/menubuttonlist',
+    url: '/sys/menu/menubuttonlist',
     method: 'get',
     params: { menucode }
   })

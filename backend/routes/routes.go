@@ -18,7 +18,6 @@ func RegisterRouter(app *iris.Application) {
 	main := corsSetting(app)
 
 	// 加载路由
-	AuthRoute(main)     // 认证登录
 	SysRoute(main)      // 系统管理
 	WorkflowRoute(main) //工作流类型
 
@@ -35,7 +34,7 @@ func corsSetting(app *iris.Application) (main iris.Party) {
 	})
 
 	/* 定义路由 */
-	main = app.Party("/", crs).AllowMethods(iris.MethodOptions)
+	main = app.Party("/api", crs).AllowMethods(iris.MethodOptions)
 	main.Use(middleware.ServeHTTP)
 
 	main.Get("/", func(ctx iris.Context) { // 首页模块

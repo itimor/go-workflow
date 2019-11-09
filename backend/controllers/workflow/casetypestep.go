@@ -35,7 +35,7 @@ func (CaseTypeStep) List(ctx iris.Context) {
 		var arr []interface{}
 		arr = append(arr, v)
 		arr = append(arr, v)
-		whereOrder = append(whereOrder, models.PageWhereOrder{Where: "username like ? or realname like ?", Value: arr})
+		whereOrder = append(whereOrder, models.PageWhereOrder{Where: "name like ?", Value: arr})
 	}
 	if status > 0 {
 		var arr []interface{}

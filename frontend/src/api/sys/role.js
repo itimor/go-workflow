@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function requestList(query) {
   return request({
-    url: '/role/list',
+    url: '/sys/role/list',
     method: 'get',
     params: query
   })
@@ -10,7 +10,7 @@ export function requestList(query) {
 
 export function requestDetail(id) {
   return request({
-    url: '/role/detail',
+    url: '/sys/role/detail',
     method: 'get',
     params: { id }
   })
@@ -18,7 +18,7 @@ export function requestDetail(id) {
 
 export function requestUpdate(data) {
   return request({
-    url: '/role/update',
+    url: '/sys/role/update',
     method: 'post',
     data
   })
@@ -26,7 +26,7 @@ export function requestUpdate(data) {
 
 export function requestCreate(data) {
   return request({
-    url: '/role/create',
+    url: '/sys/role/create',
     method: 'post',
     data
   })
@@ -34,7 +34,7 @@ export function requestCreate(data) {
 
 export function requestDelete(data) {
   return request({
-    url: '/role/delete',
+    url: '/sys/role/delete',
     method: 'post',
     data
   })
@@ -42,7 +42,7 @@ export function requestDelete(data) {
 
 export function requestRoleMenuIDList(roleid) {
   return request({
-    url: '/role/rolemenuidlist',
+    url: '/sys/role/rolemenuidlist',
     method: 'get',
     params: { roleid }
   })
@@ -50,7 +50,7 @@ export function requestRoleMenuIDList(roleid) {
 
 export function requestSetRole(roleid, data) {
   return request({
-    url: '/role/setrole',
+    url: '/sys/role/setrole',
     method: 'post',
     params: { roleid },
     data
@@ -59,7 +59,7 @@ export function requestSetRole(roleid, data) {
 
 export function requestAll() {
   return request({
-    url: '/role/allrole',
+    url: '/sys/role/allrole',
     method: 'get'
   })
 }

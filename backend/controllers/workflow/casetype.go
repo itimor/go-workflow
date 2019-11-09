@@ -35,7 +35,7 @@ func (CaseType) List(ctx iris.Context) {
 		var arr []interface{}
 		arr = append(arr, v)
 		arr = append(arr, v)
-		whereOrder = append(whereOrder, models.PageWhereOrder{Where: "username like ? or realname like ?", Value: arr})
+		whereOrder = append(whereOrder, models.PageWhereOrder{Where: "name like ?", Value: arr})
 	}
 	if status > 0 {
 		var arr []interface{}
@@ -68,6 +68,8 @@ func (CaseType) Detail(ctx iris.Context) {
 
 // 更新
 func (CaseType) Update(ctx iris.Context) {
+	uid, _ := ctx.Values().GetUint64("auth_user_id")
+
 	model := workflow.CaseType{}
 	err := ctx.ReadJSON(&model)
 	if err != nil {
@@ -82,6 +84,7 @@ func (CaseType) Update(ctx iris.Context) {
 		common.ResErrSrv(ctx, err)
 		return
 	}
+	model.UpdatedBy = uid
 	err = models.Save(&model)
 	if err != nil {
 		common.ResFail(ctx, "操作失败")
@@ -92,12 +95,15 @@ func (CaseType) Update(ctx iris.Context) {
 
 //新增
 func (CaseType) Create(ctx iris.Context) {
+	uid, _ := ctx.Values().GetUint64("auth_user_id")
+
 	model := workflow.CaseType{}
 	err := ctx.ReadJSON(&model)
 	if err != nil {
 		common.ResErrSrv(ctx, err)
 		return
 	}
+	model.CreatedBy = uid
 	err = models.Create(&model)
 	if err != nil {
 		common.ResFail(ctx, "操作失败")

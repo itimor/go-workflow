@@ -8,10 +8,17 @@ import (
 )
 
 func SysRoute(party iris.Party) {
-	api := party.Party("/api")
+	sysapi := party.Party("/sys")
 	{
+		auths := sys.Auth{}
+		sysapi.PartyFunc("/auth", func(auth router.Party) {
+			auth.Get("/info", auths.Info)
+			auth.Post("/login", auths.Login)
+			auth.Post("/logout", auths.Logout)
+			auth.Post("/changepwd", auths.ChangePwd)
+		})
 		menus := sys.Menu{}
-		api.PartyFunc("/menu", func(menu router.Party) {
+		sysapi.PartyFunc("/menu", func(menu router.Party) {
 			menu.Get("/list", menus.List)
 			menu.Get("/detail", menus.Detail)
 			menu.Get("/allmenu", menus.AllMenu)
@@ -21,7 +28,7 @@ func SysRoute(party iris.Party) {
 			menu.Post("/create", menus.Create)
 		})
 		users := sys.User{}
-		api.PartyFunc("/user", func(user router.Party) {
+		sysapi.PartyFunc("/user", func(user router.Party) {
 			user.Get("/detail", users.Detail)
 			user.Get("/list", users.List)
 			user.Get("/userroleidlist", users.UserRoleIDList)
@@ -31,7 +38,7 @@ func SysRoute(party iris.Party) {
 			user.Post("/setrole", users.SetRole)
 		})
 		roles := sys.Role{}
-		api.PartyFunc("/role", func(role router.Party) {
+		sysapi.PartyFunc("/role", func(role router.Party) {
 			role.Get("/list", roles.List)
 			role.Get("/detail", roles.Detail)
 			role.Get("/rolemenuidlist", roles.RoleMenuIDList)
