@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"iris-ticket/backend/controllers/sys"
+	"go-workflow/backend/controllers/sys"
 
 	"github.com/kataras/iris"
 	"github.com/kataras/iris/core/router"

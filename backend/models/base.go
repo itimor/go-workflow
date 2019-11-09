@@ -7,8 +7,8 @@ import (
 	"go-workflow/backend/models/workflowform"
 	"time"
 
-	"iris-ticket/backend/config"
-	"iris-ticket/backend/models/db"
+	"go-workflow/backend/config"
+	"go-workflow/backend/models/db"
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"

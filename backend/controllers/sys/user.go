@@ -1,11 +1,11 @@
 package sys
 
 import (
-	"iris-ticket/backend/controllers/common"
-	"iris-ticket/backend/middleware/casbins"
-	models "iris-ticket/backend/models/common"
-	"iris-ticket/backend/models/sys"
-	"iris-ticket/backend/pkg/convert"
+	"go-workflow/backend/controllers/common"
+	"go-workflow/backend/middleware/casbins"
+	models "go-workflow/backend/models/common"
+	"go-workflow/backend/models/sys"
+	"go-workflow/backend/pkg/convert"
 
 	"github.com/jameskeane/bcrypt"
 	"github.com/kataras/iris"

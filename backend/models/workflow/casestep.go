@@ -3,7 +3,7 @@ package workflow
 import (
 	"time"
 
-	"iris-ticket/backend/models/basemodel"
+	"go-workflow/backend/models/basemodel"
 
 	"github.com/jinzhu/gorm"
 )

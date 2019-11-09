@@ -1,7 +1,7 @@
 package common
 
 import (
-	"iris-ticket/backend/models/db"
+	"go-workflow/backend/models/db"
 
 	"github.com/jinzhu/gorm"
 )

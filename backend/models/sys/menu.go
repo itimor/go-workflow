@@ -3,8 +3,8 @@ package sys
 import (
 	"time"
 
-	"iris-ticket/backend/models/basemodel"
-	"iris-ticket/backend/models/db"
+	"go-workflow/backend/models/basemodel"
+	"go-workflow/backend/models/db"
 
 	"github.com/jinzhu/gorm"
 )

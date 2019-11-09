@@ -4,7 +4,7 @@ import (
 	"go-workflow/backend/models/db"
 	"time"
 
-	"iris-ticket/backend/models/basemodel"
+	"go-workflow/backend/models/basemodel"
 
 	"github.com/jinzhu/gorm"
 )

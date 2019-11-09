@@ -6,13 +6,13 @@ import (
 
 	"github.com/kataras/golog"
 
-	"iris-ticket/backend/config"
-	"iris-ticket/backend/controllers/common"
-	"iris-ticket/backend/middleware/casbins"
-	"iris-ticket/backend/middleware/jwts"
-	models "iris-ticket/backend/models/common"
-	"iris-ticket/backend/models/sys"
-	"iris-ticket/backend/pkg/convert"
+	"go-workflow/backend/config"
+	"go-workflow/backend/controllers/common"
+	"go-workflow/backend/middleware/casbins"
+	"go-workflow/backend/middleware/jwts"
+	models "go-workflow/backend/models/common"
+	"go-workflow/backend/models/sys"
+	"go-workflow/backend/pkg/convert"
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/kataras/iris"

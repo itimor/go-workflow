@@ -1,10 +1,10 @@
 package sys
 
 import (
-	"iris-ticket/backend/controllers/common"
-	"iris-ticket/backend/middleware/casbins"
-	models "iris-ticket/backend/models/common"
-	"iris-ticket/backend/models/sys"
+	"go-workflow/backend/controllers/common"
+	"go-workflow/backend/middleware/casbins"
+	models "go-workflow/backend/models/common"
+	"go-workflow/backend/models/sys"
 
 	"github.com/gin-gonic/gin"
 	"github.com/kataras/iris"

@@ -3,11 +3,11 @@ package sys
 import (
 	"time"
 
-	"iris-ticket/backend/config"
-	"iris-ticket/backend/controllers/common"
-	models "iris-ticket/backend/models/common"
-	"iris-ticket/backend/models/sys"
-	"iris-ticket/backend/pkg/convert"
+	"go-workflow/backend/config"
+	"go-workflow/backend/controllers/common"
+	models "go-workflow/backend/models/common"
+	"go-workflow/backend/models/sys"
+	"go-workflow/backend/pkg/convert"
 
 	"github.com/ahmetb/go-linq"
 	"github.com/dgrijalva/jwt-go"
@@ -374,5 +374,4 @@ func setMenuUp(menuMapAll map[uint64]sys.Menu, menuid uint64, menuMap map[uint64
 			setMenuUp(menuMapAll, menuModel.ParentID, menuMap)
 		}
 	}
-}
 }

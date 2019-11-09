@@ -1,8 +1,8 @@
 package main
 
 import (
-	"iris-ticket/backend/models"
-	"iris-ticket/backend/routes"
+	"go-workflow/backend/models"
+	"go-workflow/backend/routes"
 
 	"github.com/kataras/golog"
 	"github.com/kataras/iris"

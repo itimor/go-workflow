@@ -1,8 +1,8 @@
 package routes
 
 import (
-	"iris-ticket/backend/config"
-	"iris-ticket/backend/middleware"
+	"go-workflow/backend/config"
+	"go-workflow/backend/middleware"
 	"os"
 
 	"github.com/iris-contrib/middleware/cors"

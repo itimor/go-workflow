@@ -3,7 +3,7 @@ package workflow
 import (
 	"fmt"
 
-	"iris-ticket/backend/models/basemodel"
+	"go-workflow/backend/models/basemodel"
 )
 
 func TableName(name string) string {

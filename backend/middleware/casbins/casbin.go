@@ -1,9 +1,9 @@
 package casbins
 
 import (
-	models "iris-ticket/backend/models/common"
-	"iris-ticket/backend/models/sys"
-	"iris-ticket/backend/pkg/convert"
+	models "go-workflow/backend/models/common"
+	"go-workflow/backend/models/sys"
+	"go-workflow/backend/pkg/convert"
 
 	"github.com/casbin/casbin"
 	casbinmodel "github.com/casbin/casbin/model"
