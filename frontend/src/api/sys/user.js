@@ -40,19 +40,19 @@ export function requestDelete(data) {
   })
 }
 
-export function requestUserRoleIDList(userid) {
+export function requestUserRoleIDList(user_id) {
   return request({
     url: '/user/userroleidlist',
     method: 'get',
-    params: { userid }
+    params: { user_id }
   })
 }
 
-export function requestSetRole(userid, data) {
+export function requestSetRole(user_id, data) {
   return request({
     url: '/user/setrole',
     method: 'post',
-    params: { userid },
+    params: { user_id },
     data
   })
 }
