@@ -141,20 +141,20 @@ func (CaseTypeStep) CreateSteps(ctx iris.Context) {
 	}
 
 	for step, item := range steps {
+		modelOld := workflow.CaseTypeStep{}
+
 		item.Step = step + 1
 		where := workflow.CaseTypeStep{Step: item.Step, CaseTypeID: item.CaseTypeID}
-		notFound, _ := models.First(&where, &item)
+		notFound, _ := models.First(&where, &modelOld)
 
 		if notFound {
-			print("不存在")
 			err = models.Create(&item)
 			if err != nil {
 				common.ResFail(ctx, "创建步骤失败")
 				return
 			}
 		} else {
-			print("已存在")
-			err = models.Updates(&where, &item)
+			err = models.Updates(&modelOld, &item)
 			if err != nil {
 				common.ResFail(ctx, "更新步骤失败")
 				return
