@@ -142,7 +142,6 @@ func (CaseTypeStep) CreateSteps(ctx iris.Context) {
 
 	for step, item := range steps {
 		item.Step = step + 1
-		println(item.CaseTypeID)
 		err = models.Create(&item)
 		if err != nil {
 			common.ResFail(ctx, "操作失败")
