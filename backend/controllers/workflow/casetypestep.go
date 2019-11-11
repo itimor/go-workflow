@@ -125,3 +125,29 @@ func (CaseTypeStep) Delete(ctx iris.Context) {
 	}
 	common.ResSuccessMsg(ctx)
 }
+
+// 新增工作流类型后新建步骤
+func InitStep(model workflow.CaseTypeStep) {
+}
+
+// 保存类型关联步骤
+func (CaseTypeStep) CreateSteps(ctx iris.Context) {
+	var steps []workflow.CaseTypeStep
+
+	err := ctx.ReadJSON(&steps)
+	if err != nil || len(steps) == 0 {
+		common.ResErrSrv(ctx, err)
+		return
+	}
+
+	for step, item := range steps {
+		item.Step = step + 1
+		println(item.CaseTypeID)
+		err = models.Create(&item)
+		if err != nil {
+			common.ResFail(ctx, "操作失败")
+			return
+		}
+	}
+	common.ResSuccessMsg(ctx)
+}

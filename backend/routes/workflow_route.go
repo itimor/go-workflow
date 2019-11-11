@@ -25,6 +25,7 @@ func WorkflowRoute(party iris.Party) {
 			casetypestep.Post("/delete", casetypesteps.Delete)
 			casetypestep.Post("/update", casetypesteps.Update)
 			casetypestep.Post("/create", casetypesteps.Create)
+			casetypestep.Post("/createsteps", casetypesteps.CreateSteps)
 		})
 		caseforms := workflow.CaseForm{}
 		wfapi.PartyFunc("/caseform", func(caseform router.Party) {
