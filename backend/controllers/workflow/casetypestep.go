@@ -163,3 +163,16 @@ func (CaseTypeStep) CreateSteps(ctx iris.Context) {
 	}
 	common.ResSuccessMsg(ctx)
 }
+
+// 获取类型关联步骤
+func (CaseTypeStep) CaseTypeStepList(ctx iris.Context) {
+	cid := common.GetQueryToUint64(ctx, "casetype_id")
+	List := []workflow.CaseTypeStep{}
+	where := workflow.CaseTypeStep{CaseTypeID: cid}
+	err := models.PluckList(&workflow.CaseTypeStep{}, &where, &List, "step")
+	if err != nil {
+		common.ResErrSrv(ctx, err)
+		return
+	}
+	common.ResSuccess(ctx, &List)
+}
