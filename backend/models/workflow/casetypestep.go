@@ -1,10 +1,10 @@
 package workflow
 
 import (
-	"go-workflow/backend/models/db"
-	"time"
-
 	"go-workflow/backend/models/basemodel"
+	"go-workflow/backend/models/db"
+
+	"time"
 
 	"github.com/jinzhu/gorm"
 )
@@ -13,6 +13,7 @@ import (
 type CaseTypeStep struct {
 	basemodel.Model
 	Name       string `gorm:"column:name;size:32;not null;" json:"name" form:"name"`                 // 节点名称
+	Type       uint8  `gorm:"column:type;type:tinyint(1);not null;" json:"type" form:"type"`         // 状态(1:审核人 2:执行人)
 	UserID     uint64 `gorm:"column:user_id;unique_index:uk_casetypestep_user_id;not null;"`         // 执行人ID
 	CaseTypeID uint64 `gorm:"column:casetype_id;unique_index:uk_casetypestep_casetype_id;not null;"` // 工作流类型ID
 	Step       uint8  `gorm:"column:step;type:tinyint(1);not null;" json:"step" form:"step"`         // 执行步骤(1 2 3 4)
