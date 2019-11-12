@@ -178,7 +178,7 @@
           :prop="'nodes.' + index + '.value'"
           :rules="{required: true, message: node.name + '不能为空', trigger: 'blur'}"
         >
-          <el-select v-model="node.user_id" placeholder="请选择用户">
+          <el-select v-model="node.user_id" placeholder="请选择用户" @change="showuserdata">
             <el-option v-for="item in users" :key="item.id" :label="item.username" :value="item.id"></el-option>
           </el-select>
           <el-button plain type="danger" icon="el-icon-delete" @click.prevent="removeDomain(node)"></el-button>
@@ -210,24 +210,13 @@
 
 <script>
 import { requestMenuButton } from "@/api/sys/menu";
-import {
-  requestList,
-  requestDetail,
-  requestUpdate,
-  requestCreate,
-  requestDelete,
-  requestCreateSteps
-} from "@/api/workflow/casetype";
+import { requestList, requestDetail, requestUpdate, requestCreate, requestDelete} from "@/api/workflow/casetype";
 import * as caseform from "@/api/workflow/caseform";
+import * as casetypestep from "@/api/workflow/casetypestep";
 import * as user from "@/api/sys/user";
 import Pagination from "@/components/Pagination"; // Secondary package based on el-pagination
 import SelectTree from "@/components/TreeSelect";
-import {
-  checkAuthAdd,
-  checkAuthDel,
-  checkAuthView,
-  checkAuthUpdate
-} from "@/utils/permission";
+import { checkAuthAdd, checkAuthDel, checkAuthView, checkAuthUpdate } from "@/utils/permission";
 
 export default {
   name: "CaseType",
@@ -471,18 +460,11 @@ export default {
     },
     handleCreateFlow(row) {
       this.dialogFlowVisible = true;
-
       this.casetype_id=row.id
-      this.dynamicflowForm = {
-        nodes: [
-          {
-            user_id: 0,
-            name: "审核人",
-            type: 1,
-            casetype_id: this.casetype_id
-          }
-        ]
-      }
+      casetypestep.requestList({casetype_id:this.casetype_id}).then(response => {
+        this.dynamicflowForm.nodes = response.data;
+        this.active = response.data.length
+      })
     },
     removeDomain(item) {
       this.active -= 1;
@@ -495,7 +477,7 @@ export default {
       this.active += 1;
       if (val === 1) {
         this.dynamicflowForm.nodes.push({
-          user_id: 0,
+          user_id: null,
           name: "审核人",
           type: val,
           casetype_id: this.casetype_id,
@@ -503,7 +485,7 @@ export default {
         });
       } else {
         this.dynamicflowForm.nodes.push({
-          user_id: 0,
+          user_id: null,
           name: "执行人",
           type: val,
           casetype_id: this.casetype_id,
@@ -511,8 +493,11 @@ export default {
         });
       }
     },
+    showuserdata(val){
+      console.log(this.dynamicflowForm)
+    },
     submitflowForm(formName) {
-      requestCreateSteps(this.dynamicflowForm.nodes);
+      casetypestep.requestCreate(this.dynamicflowForm.nodes);
     },
     handleSelectionChange(val) {
       this.multipleSelection = val;

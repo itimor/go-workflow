@@ -4,6 +4,7 @@ import (
 	"go-workflow/backend/controllers/common"
 	models "go-workflow/backend/models/common"
 	"go-workflow/backend/models/workflow"
+	"go-workflow/backend/pkg/convert"
 
 	"github.com/kataras/iris"
 )
@@ -143,7 +144,7 @@ func (CaseTypeStep) CreateSteps(ctx iris.Context) {
 	for step, item := range steps {
 		modelOld := workflow.CaseTypeStep{}
 
-		item.Step = step + 1
+		item.Step = convert.ToUint8(step) + 1
 		where := workflow.CaseTypeStep{Step: item.Step, CaseTypeID: item.CaseTypeID}
 		notFound, _ := models.First(&where, &modelOld)
 
@@ -169,7 +170,7 @@ func (CaseTypeStep) CaseTypeStepList(ctx iris.Context) {
 	cid := common.GetQueryToUint64(ctx, "casetype_id")
 	List := []workflow.CaseTypeStep{}
 	where := workflow.CaseTypeStep{CaseTypeID: cid}
-	err := models.PluckList(&workflow.CaseTypeStep{}, &where, &List, "step")
+	err := models.Find(&where, &List, "step")
 	if err != nil {
 		common.ResErrSrv(ctx, err)
 		return

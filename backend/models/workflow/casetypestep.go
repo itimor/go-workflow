@@ -13,10 +13,10 @@ import (
 type CaseTypeStep struct {
 	basemodel.Model
 	Name       string `gorm:"column:name;size:32;not null;" json:"name" form:"name"`              // 名称
-	Type       int    `gorm:"column:type;type:tinyint(1);not null;" json:"type" form:"type"`      // 状态(0:提交 1:审核 2:执行 3:关闭)
-	UserID     int    `gorm:"column:user_id;not null;" json:"user_id" form:"user_id"`             // 执行人ID
-	CaseTypeID int    `gorm:"column:casetype_id;not null;" json:"casetype_id" form:"casetype_id"` // 工作流类型ID
-	Step       int    `gorm:"column:step;type:tinyint(1);not null;" json:"step" form:"step"`      // 执行步骤(1 2 3 4)
+	Type       uint8    `gorm:"column:type;type:tinyint(1);not null;" json:"type" form:"type"`      // 状态(0:提交 1:审核 2:执行 3:关闭)
+	UserID     uint64    `gorm:"column:user_id;not null;" json:"user_id" form:"user_id"`             // 执行人ID
+	CaseTypeID uint64    `gorm:"column:casetype_id;not null;" json:"casetype_id" form:"casetype_id"` // 工作流类型ID
+	Step       uint8    `gorm:"column:step;type:tinyint(1);not null;" json:"step" form:"step"`      // 执行步骤(1 2 3 4)
 }
 
 // 表名

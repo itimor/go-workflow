@@ -39,11 +39,3 @@ export function requestDelete(data) {
     data
   })
 }
-
-export function requestCreateSteps(data) {
-  return request({
-    url: '/workflow/casetypestep/createsteps',
-    method: 'post',
-    data
-  })
-}
