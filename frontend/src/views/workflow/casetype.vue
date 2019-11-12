@@ -178,7 +178,7 @@
           :prop="'nodes.' + index + '.value'"
           :rules="{required: true, message: node.name + '不能为空', trigger: 'blur'}"
         >
-          <el-select v-model="node.user_id" placeholder="请选择用户" @change="showuserdata">
+          <el-select v-model="node.user_id" placeholder="请选择用户">
             <el-option v-for="item in users" :key="item.id" :label="item.username" :value="item.id"></el-option>
           </el-select>
           <el-button plain type="danger" icon="el-icon-delete" @click.prevent="removeDomain(node)"></el-button>
@@ -462,8 +462,10 @@ export default {
       this.dialogFlowVisible = true;
       this.casetype_id=row.id
       casetypestep.requestList({casetype_id:this.casetype_id}).then(response => {
-        this.dynamicflowForm.nodes = response.data;
         this.active = response.data.length
+        this.dynamicflowForm = {
+          nodes: response.data
+        }
       })
     },
     removeDomain(item) {
@@ -478,7 +480,7 @@ export default {
       if (val === 1) {
         this.dynamicflowForm.nodes.push({
           user_id: null,
-          name: "审核人",
+          name: "审核",
           type: val,
           casetype_id: this.casetype_id,
           key: Date.now()
@@ -486,15 +488,12 @@ export default {
       } else {
         this.dynamicflowForm.nodes.push({
           user_id: null,
-          name: "执行人",
+          name: "执行",
           type: val,
           casetype_id: this.casetype_id,
           key: Date.now()
         });
       }
-    },
-    showuserdata(val){
-      console.log(this.dynamicflowForm)
     },
     submitflowForm(formName) {
       casetypestep.requestCreate(this.dynamicflowForm.nodes);
