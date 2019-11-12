@@ -76,7 +76,7 @@
               v-if="permissionList.view"
               size="small"
               type="success"
-              @click="handleDetail(row.code)"
+              @click="handlePreview(row)"
             >
               {{ "预览" }}
             </el-button>
@@ -149,8 +149,8 @@
       </div>
     </el-dialog>
 
-    <el-dialog title="xxx" :visible.sync="showForm">
-      <loader :formName="formName" :prop="prop"></loader>
+    <el-dialog :title="dynamicForm.name" :visible.sync="showForm">
+      <component :is="dynamicForm.code"></component>
     </el-dialog>
   </div>
 </template>
@@ -161,24 +161,14 @@ import { requestList, requestDetail, requestUpdate, requestCreate, requestDelete
 import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
 import SelectTree from '@/components/TreeSelect'
 import { checkAuthAdd, checkAuthDel, checkAuthView, checkAuthUpdate } from '@/utils/permission'
-import loader from './EntryLoader.vue'
-
-const AsyncComponent = () => ({
-  // 需要加载的组件 (应该是一个 `Promise` 对象)
-  component: import('./forms/deploy.vue'),
-  // 展示加载时组件的延时时间。默认值是 200 (毫秒)
-  delay: 200,
-  // 如果提供了超时时间且组件加载也超时了，
-  // 则使用加载失败时使用的组件。默认值是：`Infinity`
-  timeout: 3000
-})
+import Deploy from './forms/deploy.vue'
+import Holiday from './forms/holiday.vue'
 
 export default {
   name: 'CaseForm',
-  components: { Pagination, SelectTree, loader },
+  components: { Pagination, SelectTree, Deploy, Holiday },
   data() {
     return {
-      prop: {name: '张三'},
       operationList: [],
       permissionList: {
         add: false,
@@ -204,7 +194,7 @@ export default {
       },
       dialogFormVisible: false,
       showForm: false,
-      formName: '',
+      dynamicForm: {},
       dialogStatus: '',
       textMap: {
         update: '编辑',
@@ -299,9 +289,9 @@ export default {
         }
       })
     },
-    handleDetail(code) {
+    handlePreview(row) {
       this.showForm = true
-      this.formName = code
+      this.dynamicForm = row
     },
     handleUpdate(id) {
       this.loading = true
