@@ -47,7 +47,7 @@
       @sort-change="sortChange"
       @selection-change="handleSelectionChange"
     >
-      <el-table-column type="selection" width="55" />
+      <el-table-column type="selection" width="55"/>
       <el-table-column label="名称" align="center">
         <template slot-scope="scope">
           <span>{{ scope.row.name }}</span>
@@ -112,7 +112,7 @@
         style="width: 400px; margin-left:50px;"
       >
         <el-form-item label="名称" prop="name">
-          <el-input v-model="temp.name" />
+          <el-input v-model="temp.name"/>
         </el-form-item>
         <el-form-item label="表单" prop="form">
           <el-select v-model="temp.form" placeholder="操作类型">
@@ -131,7 +131,7 @@
           </el-radio-group>
         </el-form-item>
         <el-form-item label="备注" prop="memo">
-          <el-input v-model="temp.memo" />
+          <el-input v-model="temp.memo"/>
         </el-form-item>
       </el-form>
       <div
@@ -210,13 +210,24 @@
 
 <script>
 import { requestMenuButton } from "@/api/sys/menu";
-import { requestList, requestDetail, requestUpdate, requestCreate, requestDelete} from "@/api/workflow/casetype";
+import {
+  requestList,
+  requestDetail,
+  requestUpdate,
+  requestCreate,
+  requestDelete
+} from "@/api/workflow/casetype";
 import * as caseform from "@/api/workflow/caseform";
 import * as casetypestep from "@/api/workflow/casetypestep";
 import * as user from "@/api/sys/user";
 import Pagination from "@/components/Pagination"; // Secondary package based on el-pagination
 import SelectTree from "@/components/TreeSelect";
-import { checkAuthAdd, checkAuthDel, checkAuthView, checkAuthUpdate } from "@/utils/permission";
+import {
+  checkAuthAdd,
+  checkAuthDel,
+  checkAuthView,
+  checkAuthUpdate
+} from "@/utils/permission";
 
 export default {
   name: "CaseType",
@@ -318,7 +329,7 @@ export default {
       user.requestList().then(response => {
         this.users = response.data.items;
         for (var user of this.users) {
-          this.filterUsers[user.id] = user.username
+          this.filterUsers[user.id] = user.username;
         }
       });
     },
@@ -460,13 +471,15 @@ export default {
     },
     handleCreateFlow(row) {
       this.dialogFlowVisible = true;
-      this.casetype_id=row.id
-      casetypestep.requestList({casetype_id:this.casetype_id}).then(response => {
-        this.active = response.data.length
-        this.dynamicflowForm = {
-          nodes: response.data
-        }
-      })
+      this.casetype_id = row.id;
+      casetypestep
+        .requestList({ casetype_id: this.casetype_id })
+        .then(response => {
+          this.active = response.data.length;
+          this.dynamicflowForm = {
+            nodes: response.data
+          };
+        });
     },
     removeDomain(item) {
       this.active -= 1;
@@ -496,7 +509,15 @@ export default {
       }
     },
     submitflowForm(formName) {
-      casetypestep.requestCreate(this.dynamicflowForm.nodes);
+      casetypestep.requestCreate(this.dynamicflowForm.nodes).then(response => {
+        this.dialogFlowVisible = false;
+        this.$notify({
+          title: "成功",
+          message: "提交成功",
+          type: "success",
+          duration: 2000
+        });
+      });
     },
     handleSelectionChange(val) {
       this.multipleSelection = val;

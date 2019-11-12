@@ -141,25 +141,17 @@ func (CaseTypeStep) CreateSteps(ctx iris.Context) {
 		return
 	}
 
+	where := workflow.CaseTypeStep{CaseTypeID: steps[0].CaseTypeID}
+	// delete all cid
+	_, err = models.DeleteByWhere(&workflow.CaseTypeStep{}, where)
+
 	for step, item := range steps {
-		modelOld := workflow.CaseTypeStep{}
-
 		item.Step = convert.ToUint8(step) + 1
-		where := workflow.CaseTypeStep{Step: item.Step, CaseTypeID: item.CaseTypeID}
-		notFound, _ := models.First(&where, &modelOld)
 
-		if notFound {
-			err = models.Create(&item)
-			if err != nil {
-				common.ResFail(ctx, "创建步骤失败")
-				return
-			}
-		} else {
-			err = models.Updates(&modelOld, &item)
-			if err != nil {
-				common.ResFail(ctx, "更新步骤失败")
-				return
-			}
+		err = models.Create(&item)
+		if err != nil {
+			common.ResFail(ctx, "创建失败")
+			return
 		}
 	}
 	common.ResSuccessMsg(ctx)
