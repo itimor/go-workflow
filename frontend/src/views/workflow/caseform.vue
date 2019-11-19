@@ -166,7 +166,7 @@ import Holiday from './forms/holiday.vue'
 
 export default {
   name: 'CaseForm',
-  components: { Pagination, SelectTree, Deploy, Holiday },
+  components: { Pagination, SelectTree, Deploy, Holiday},
   data() {
     return {
       operationList: [],

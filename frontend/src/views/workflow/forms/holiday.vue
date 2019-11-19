@@ -64,7 +64,7 @@ export default {
       this.$refs[formName].resetFields();
     },
     countHours(val){
-      console.log(val)
+      console.log(val[0])
     }
   }
 };

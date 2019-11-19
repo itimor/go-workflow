@@ -59,9 +59,14 @@
           <span>{{ scope.row.name }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="表单" align="center">
+      <el-table-column label="类型" align="center">
         <template slot-scope="scope">
-          <span>{{ scope.row.form }}</span>
+          <span>{{ scope.row.type }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="当前处理人" align="center">
+        <template slot-scope="scope">
+          <span>{{ scope.row.action }}</span>
         </template>
       </el-table-column>
       <el-table-column
@@ -141,21 +146,8 @@
         <el-form-item label="名称" prop="name">
           <el-input v-model="temp.name" />
         </el-form-item>
-        <el-form-item label="表单" prop="form">
-          <el-select v-model="temp.form" placeholder="操作类型">
-            <el-option
-              v-for="item in caseforms"
-              :key="item.code"
-              :label="item.name"
-              :value="item.code"
-            />
-          </el-select>
-        </el-form-item>
-        <el-form-item label="状态" prop="status">
-          <el-radio-group v-model.number="temp.status" type="number">
-            <el-radio :label="1">启用</el-radio>
-            <el-radio :label="2">禁用</el-radio>
-          </el-radio-group>
+        <el-form-item label="需求" prop="content">
+          <el-input v-model="temp.content" />
         </el-form-item>
         <el-form-item label="备注" prop="memo">
           <el-input v-model="temp.memo" />

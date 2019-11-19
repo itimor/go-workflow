@@ -49,6 +49,10 @@ func (Case) List(ctx iris.Context) {
 		common.ResErrSrv(ctx, err)
 		return
 	}
+	
+	for _,item:= range(list) {
+		println(item.Name)
+	}
 	common.ResSuccessPage(ctx, total, &list)
 }
 

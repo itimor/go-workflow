@@ -1,9 +1,9 @@
 package workflow
 
 import (
-	"time"
-
 	"go-workflow/backend/models/basemodel"
+
+	"time"
 
 	"github.com/jinzhu/gorm"
 )
